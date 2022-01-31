@@ -26,7 +26,15 @@ class BlockChain {
     addBlock(newBlock){
         newBlock.previousHash = this.getLatestBlock().hash;//get the latest block and its hash
         newBlock.hash = newBlock.calculateHash();//update the calculateHash function
-        this.chain.push(newBlock);//add it to the block
+        this.chain.push(newBlock);//add new block to the blockchain
 
     }
 }
+//testing by creating an instance of the blockchain
+let NjokiCoin = new BlockChain()
+NjokiCoin.addBlock(new Block(1, "31/1/2022",{amount:4}));
+NjokiCoin.addBlock(new Block(2, "2/2/2022",{amount:10}));
+NjokiCoin.addBlock(new Block(1, "4/2/2022",{amount:20}));
+
+
+console.log(JSON.stringify(NjokiCoin, null,4 ));
