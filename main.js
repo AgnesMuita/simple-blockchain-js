@@ -27,7 +27,20 @@ class BlockChain {
         newBlock.previousHash = this.getLatestBlock().hash;//get the latest block and its hash
         newBlock.hash = newBlock.calculateHash();//update the calculateHash function
         this.chain.push(newBlock);//add new block to the blockchain
+    }
+    isChainValid(){
+      for(let i = 1;i < this.chain.length; i++){
+        const currentBlock = this.chain(i);
+        const previousBlock = this.chain(i-1);
 
+        if (currentBlock.hash !== currentBlock.calculateHash()){
+            return false;
+        }
+        if (currentBlock.previousHash !== previousBlock.hash){
+            return false;
+        }
+      }
+      return true;
     }
 }
 //testing by creating an instance of the blockchain
